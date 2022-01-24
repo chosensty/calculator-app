@@ -1,69 +1,83 @@
-// keeping a list of all the operations and numbers
-let current_operation = ''
-let number_variable = 0
-
-// if this is variable is true, the last number will be operated on by the operation.
-let operation_bool = false
+let number_1_variable = null
+let number_2_variable = null
+let clear_boolean = true
+let current_operator = ''
 
 
-//current index of numbers
-let currentIndex = 0
 
-function displayNumber(output) {
-  document.getElementById('output').innerHTML = output.substring(0, 15)
+//the clear parameter is a indication of whether the value should concatenate or not.
+// function displayNumber(output, clear_param) {
+//   if (document.getElementById('output').innerHTML === '0') return;
+//   return document.getElementById('output').innerHTML = (document.getElementById('output').innerHTML + output).substring(0, 15)
+// }
+
+function consoleLog() {
+  console.log(`number 1 variable: ${number_1_variable}`)
+  console.log(`number 2 variable: ${number_2_variable}`)
+  console.log(`current operator variable: ${current_operator}`)
 }
 
 function numClicked(number) {
-  contents = document.getElementById('output').innerHTML
-  if (contents === '0') {
-    content = number
-  } else {
-    content += number
+  let content = document.getElementById('output').innerHTML
+  if (number === '.' && (content.includes('.'))) return;
+  if (clear_boolean || content === '0') {
+    document.getElementById('output').innerHTML = number
+    return clear_boolean = false
   }
-return displayNumber(content)
+  return document.getElementById('output').innerHTML = content.substring(0, 14) + number
 }
 
 function removeNum() {
-  let contents = document.getElementById('output').innerHTML
-  if (contents.length > 1) {
-    contents = content.substring(0, contents.length-1)
-  } else {
-    contents = '0'
-  }
-  displayNumber(contents)
+  let content = document.getElementById('output').innerHTML
+  if(content.length < 2) return reset()
+  return document.getElementById('output').innerHTML = content.substring(0, content.length-1)
 }
 
-function calculator(num1, num2, operator) {
+function calculator(n1, n2, operator) {
+  num1 = parseFloat(n1)
+  num2 = parseFloat(n2)
   if (operator === '+') {
-    return num1 + num2
+    answer = num1 + num2
   } else if (operator === '*') {
-    return num1 * num2
+    answer =  num1 * num2
   } else if (operator === '/') {
-    return num1/ num2
-  } else if (operator === '-') {
-    return num1 - num2
+    if(num2 != 0) answer = num1/ num2
+  } else if (operator === '-'){
+    answer = num1 - num2
+  }else {
+    answer = num1
+  }
+  return answer
+}
+
+
+
+function answerFunction() {
+  try {
+  if(number_1_variable === null) return;
+  if (number_2_variable === null) number_2_variable = document.getElementById('output').innerHTML
+  number_1_variable = calculator(number_1_variable, number_2_variable, current_operator)
+  document.getElementById('output').innerHTML = number_1_variable
+  consoleLog()
+  } catch(err) {
+  console.error('answer error: '+err)
   }
 }
 
 function operation(symbol) {
-  if (current_operation !== '' && operation_bool === true) {
-    contents = document.getElementById('output').innerHTML
-    number_variable  = calculator(number_variable, parseInt(contents), current_operation)
+  if (number_1_variable !== null) {
+    number_1_variable = calculator(number_1_variable, document.getElementById('output').innerHTML, current_operator)
+    document.getElementById('output').innerHTML = number_1_variable
   }
-
-
-  current_operation = symbol
-  number_variable = document.getElementById('output').innerHTML
-
+  number_1_variable = document.getElementById('output').innerHTML
+  current_operator = symbol
+  clear_boolean = true
+  consoleLog()
 }
 
 function reset() {
-  numbers = []
-  operation = ''
-  currentIndex = 0
-  displayNumber('0')
-}
-
-function answer() {
-
+  number_1_variable = null
+  current_operator = ''
+  document.getElementById('output').innerHTML = '0'
+  consoleLog()
 }
