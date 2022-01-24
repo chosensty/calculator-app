@@ -111,3 +111,7 @@ body {
   background-color: #536188;
   border-bottom: 6px #3f4a6b solid;
 }
+
+.button-grid > div button:active{
+  color: #000000;
+}

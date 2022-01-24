@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator app</title>
     <link rel="stylesheet" href="index.css">
+  <script src="index.js"></script>
 </head>
 <body>
   <div class="wrapper">
@@ -19,46 +20,46 @@
       </div>
 
       <div class="text-box">
-        <div id="output">Some text</div>
+        <div id="output">0</div>
       </div>
 
       <div class="button-grid">
 
-        <div class="button-item"><button>7</button></div>
+        <div class="button-item"><button onclick="numClicked('7')">7</button></div>
 
-        <div class="button-item"><button>8</button></div>
+        <div class="button-item"><button onclick="numClicked('8')">8</button></div>
 
-        <div class="button-item"><button>9</button></div>
+        <div class="button-item"><button onclick="numClicked('9')">9</button></div>
 
-        <div class="button-item"><button>DEL</button></div>
+        <div class="button-item"><button onclick="removeNum()">DEL</button></div>
 
-        <div class="button-item"><button>4</button></div>
+        <div class="button-item"><button onclick="numClicked('4')">4</button></div>
 
-        <div class="button-item"><button>5</button></div>
+        <div class="button-item"><button onclick="numClicked('5')">5</button></div>
 
-        <div class="button-item"><button>6</button></div>
+        <div class="button-item"><button onclick="numClicked('6')">6</button></div>
 
-        <div class="button-item"><button>+</button></div>
+        <div class="button-item"><button onclick="operation('+')">+</button></div>
 
-        <div class="button-item"><button>1</button></div>
+        <div class="button-item"><button onclick="numClicked('1')">1</button></div>
 
-        <div class="button-item"><button>2</button></div>
+        <div class="button-item"><button onclick="numClicked('2')">2</button></div>
 
-        <div class="button-item"><button>3</button></div>
+        <div class="button-item"><button onclick="numClicked('3')">3</button></div>
 
-        <div class="button-item"><button>-</button></div>
+        <div class="button-item"><button onclick="operation('-')">-</button></div>
 
-        <div class="button-item"><button>.</button></div>
+        <div class="button-item"><button onclick="numClicked('.')">.</button></div>
 
-        <div class="button-item"><button>0</button></div>
+        <div class="button-item"><button onclick="numClicked('0')">0</button></div>
 
-        <div class="button-item"><button>/</button></div>
+        <div class="button-item"><button onclick="operation('/')">/</button></div>
 
-        <div class="button-item"><button>x</button></div>
+        <div class="button-item"><button onclick="operation('x')">x</button></div>
 
-        <div class="button-item"><button>RESET</button></div>
+        <div class="button-item"><button onclick="reset()">RESET</button></div>
 
-        <div class="button-item"><button>=</button></div>
+        <div class="button-item"><button onclick="answer()">=</button></div>
 
       </div>
   </div>
