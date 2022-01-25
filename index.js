@@ -4,6 +4,8 @@ let number_2_variable = null
 // whether the calculator should clear when the next input is given
 let clear_boolean = true
 
+let reset_boolean = false
+
 // next operation to be perfomed
 let current_operator = ''
 
@@ -12,6 +14,7 @@ let decimalPlaces = 5
 //
 function toDisplay(value, concatenate) {
   content = document.getElementById('output').innerHTML
+
   if(content.includes('.')) {
     content = content.substring(0, content.indexOf('.')+decimalPlaces)
   }
@@ -25,6 +28,13 @@ function toDisplay(value, concatenate) {
 
 function numClicked(number) {
   let content = document.getElementById('output').innerHTML
+
+    // if they type after an answer has been outputed.
+    if (reset_boolean) {
+      number_1_variable = null
+      number_2_variable = null
+      current_operator = ''
+    }
   // making sure there aren't multiple decimal places.
   if (number === '.' && (content.includes('.'))) return;
   // if the calculator must be cleared, or if the value on it is 0 this happens.
@@ -70,12 +80,17 @@ function answerFunction() {
     toDisplay(number_1_variable, false)
   }
   clear_boolean = true
+  reset_boolean = true
+  console.log(number_1_variable)
+  console.log(number_2_variable)
+  console.log(current_operator)
   } catch(err) {
   console.error('answer error: '+err)
   }
 }
 
 function operation(symbol) {
+  reset_boolean = false
   // in some cases, someone may press a symbol two times in a row, two prevent this this line of code was made.
   try {
   if(clear_boolean) {
