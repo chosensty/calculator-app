@@ -9,15 +9,10 @@ let reset_boolean = false
 // next operation to be perfomed
 let current_operator = ''
 
-let decimalPlaces = 5
-
 //
 function toDisplay(value, concatenate) {
   content = document.getElementById('output').innerHTML
-
-  if(content.includes('.')) {
-    content = content.substring(0, content.indexOf('.')+decimalPlaces)
-  }
+  
   if (concatenate) {
     return document.getElementById('output').innerHTML = content.substring(0, 14) + value
   }
@@ -38,7 +33,7 @@ function numClicked(number) {
   // making sure there aren't multiple decimal places.
   if (number === '.' && (content.includes('.'))) return;
   // if the calculator must be cleared, or if the value on it is 0 this happens.
-  if (clear_boolean || content === '0') {
+  if (clear_boolean || (content === '0' && number !== '.')) {
     document.getElementById('output').innerHTML = number
     return clear_boolean = false
   }
