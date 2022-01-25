@@ -62,7 +62,8 @@ function calculator(n1, n2, operator) {
   } else if (operator === '*') {
     answer =  num1 * num2
   } else if (operator === '/') {
-    if(num2 != 0) answer = num1/ num2
+    if(num2 == 0) return 0
+    answer = num1/ num2
   } else if (operator === '-'){
     answer = num1 - num2
   }
