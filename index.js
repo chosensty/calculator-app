@@ -12,7 +12,7 @@ let current_operator = ''
 //
 function toDisplay(value, concatenate) {
   content = document.getElementById('output').innerHTML
-  
+
   if (concatenate) {
     return document.getElementById('output').innerHTML = content.substring(0, 14) + value
   }
@@ -119,4 +119,38 @@ function reset() {
   current_operator = ''
   clear_boolean = false
   toDisplay('0', false)
+}
+
+let theme_index = 0
+
+// when someone changes the THEME
+
+function change_theme() {
+  theme_index = (theme_index + 1) % 3
+  let elements = document.body.querySelectorAll( "body *" )
+  if (theme_index === 0) {
+    // default/ blue theme
+    document.body.classList.remove('purple')
+    document.getElementById('notch').style.left = '5px'
+    elements.forEach((elem) => {
+      elem.classList.remove('purple')
+    })
+  } else if (theme_index === 1) {
+    // white or light theme
+    document.body.classList.add('light')
+    document.getElementById('notch').style.left = '35px'
+    elements.forEach((elem) => {
+      elem.classList.add('light')
+    })
+
+  } else {
+    // purple theme
+    document.body.classList.remove('light')
+    document.body.classList.add('purple')
+    document.getElementById('notch').style.left = '65px'
+    elements.forEach((elem) => {
+      elem.classList.remove('light')
+      elem.classList.add('purple')
+    })
+  }
 }
